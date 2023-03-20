@@ -10,4 +10,7 @@ public class EnderecoService {
         }
         return true;
     }
+    public String mascaraCEP(String cep) {
+        return cep.replaceAll("-", "");
+    }
 }

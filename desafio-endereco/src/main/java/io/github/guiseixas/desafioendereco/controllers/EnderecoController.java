@@ -19,10 +19,11 @@ public class EnderecoController {
     private EnderecoService enderecoService;
     @Autowired
     private DtoConverterService dtoConverterService;
-    
+
     @PostMapping("/consulta-endereco")
     public ResponseEntity<?> consultaEndereco(@RequestBody Endereco endereco){
-        if(enderecoService.validarCep(endereco.getCep())){
+        String cep = enderecoService.mascaraCEP(endereco.getCep());
+        if(enderecoService.validarCep(cep)){
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<ResponseCepDTO> response =
                     restTemplate.getForEntity(String.format("https://viacep.com.br/ws/%s/json/", endereco.getCep()), ResponseCepDTO.class);
