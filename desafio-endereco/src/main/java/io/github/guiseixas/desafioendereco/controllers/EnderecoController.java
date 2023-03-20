@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 @RestController
 @RequestMapping("/v1")
 public class EnderecoController {
@@ -26,10 +31,10 @@ public class EnderecoController {
         if(enderecoService.validarCep(cep)){
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<ResponseCepDTO> response =
-                    restTemplate.getForEntity(String.format("https://viacep.com.br/ws/%s/json/", endereco.getCep()), ResponseCepDTO.class);
+                    restTemplate.getForEntity(String.format("https://viacep.com.br/ws/%s/json/", cep), ResponseCepDTO.class);
             ResponseToUserDTO responseToUserDTO = dtoConverterService.convertToResponseUserDTO(response.getBody());
-            if(responseToUserDTO == null){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O CEP informado não foi encontrado.");
+            if(isNull(responseToUserDTO.getBairro())){
+                return ResponseEntity.badRequest().body("O CEP informado não foi encontrado.");
             }
             return ResponseEntity.ok(responseToUserDTO);
         }

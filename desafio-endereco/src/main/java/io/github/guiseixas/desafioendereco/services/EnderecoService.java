@@ -11,6 +11,6 @@ public class EnderecoService {
         return true;
     }
     public String mascaraCEP(String cep) {
-        return cep.replaceAll("-", "");
+        return cep.substring(0,5) + cep.substring(6);
     }
 }
