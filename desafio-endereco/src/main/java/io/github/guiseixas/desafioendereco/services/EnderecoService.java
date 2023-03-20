@@ -1,4 +1,4 @@
-package io.github.guiseixas.desafioendereco.services.dtos;
+package io.github.guiseixas.desafioendereco.services;
 
 import org.springframework.stereotype.Service;
 

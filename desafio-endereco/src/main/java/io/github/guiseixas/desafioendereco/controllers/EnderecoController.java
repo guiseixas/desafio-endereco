@@ -1,8 +1,8 @@
 package io.github.guiseixas.desafioendereco.controllers;
 
 import io.github.guiseixas.desafioendereco.entities.Endereco;
-import io.github.guiseixas.desafioendereco.services.dtos.DtoConverterService;
-import io.github.guiseixas.desafioendereco.services.dtos.EnderecoService;
+import io.github.guiseixas.desafioendereco.services.ConverterService;
+import io.github.guiseixas.desafioendereco.services.EnderecoService;
 import io.github.guiseixas.desafioendereco.services.dtos.ResponseCepDTO;
 import io.github.guiseixas.desafioendereco.services.dtos.ResponseToUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class EnderecoController {
     @Autowired
     private EnderecoService enderecoService;
     @Autowired
-    private DtoConverterService dtoConverterService;
+    private ConverterService dtoConverterService;
 
     @PostMapping("/consulta-endereco")
     public ResponseEntity<?> consultaEndereco(@RequestBody Endereco endereco){

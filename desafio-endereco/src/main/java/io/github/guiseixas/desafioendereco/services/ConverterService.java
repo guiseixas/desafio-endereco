@@ -1,5 +1,7 @@
-package io.github.guiseixas.desafioendereco.services.dtos;
+package io.github.guiseixas.desafioendereco.services;
 
+import io.github.guiseixas.desafioendereco.services.dtos.ResponseCepDTO;
+import io.github.guiseixas.desafioendereco.services.dtos.ResponseToUserDTO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -7,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class DtoConverterService {
+public class ConverterService {
     public ResponseToUserDTO convertToResponseUserDTO(ResponseCepDTO response){
         Map<String, String[]> regioes = new HashMap<>();
         regioes.put("Norte", new String[]{"AC", "AP", "AM", "PA", "RO", "RR", "TO"});
