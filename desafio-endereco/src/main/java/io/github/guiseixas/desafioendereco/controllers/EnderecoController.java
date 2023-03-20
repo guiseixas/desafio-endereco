@@ -5,6 +5,7 @@ import io.github.guiseixas.desafioendereco.services.ConverterService;
 import io.github.guiseixas.desafioendereco.services.EnderecoService;
 import io.github.guiseixas.desafioendereco.services.dtos.ResponseCepDTO;
 import io.github.guiseixas.desafioendereco.services.dtos.ResponseToUserDTO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class EnderecoController {
     @Autowired
     private ConverterService dtoConverterService;
 
+    @ApiOperation(value = "Obter dados com base no CEP enviado via requisição", response = Endereco.class)
     @PostMapping("/consulta-endereco")
     public ResponseEntity<?> consultaEndereco(@RequestBody Endereco endereco){
         String cep = enderecoService.mascaraCEP(endereco.getCep());
