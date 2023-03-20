@@ -21,19 +21,26 @@ public class EnderecoController {
     @Autowired
     private ConverterService dtoConverterService;
 
+    private final String BASE_URL = "https://viacep.com.br/ws/%s/json/";
+
     @ApiOperation(value = "Obter dados com base no CEP enviado via requisição", response = Endereco.class)
     @PostMapping("/consulta-endereco")
     public ResponseEntity<?> consultaEndereco(@RequestBody Endereco endereco){
         String cep = enderecoService.mascaraCEP(endereco.getCep());
         if(enderecoService.validarCep(cep)){
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<ResponseCepDTO> response =
-                    restTemplate.getForEntity(String.format("https://viacep.com.br/ws/%s/json/", cep), ResponseCepDTO.class);
-            ResponseToUserDTO responseToUserDTO = dtoConverterService.convertToResponseUserDTO(response.getBody());
-            if(isNull(responseToUserDTO.getCep())){
-                return ResponseEntity.badRequest().body("O CEP informado não foi encontrado.");
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                ResponseEntity<ResponseCepDTO> response =
+                        restTemplate.getForEntity(String.format(this.BASE_URL, cep), ResponseCepDTO.class);
+                ResponseToUserDTO responseToUserDTO = dtoConverterService.convertToResponseUserDTO(response.getBody());
+
+                if(isNull(responseToUserDTO.getCep())){
+                    return ResponseEntity.badRequest().body("O CEP informado não foi encontrado.");
+                }
+                return ResponseEntity.ok(responseToUserDTO);
+            } catch (Exception ex) {
+                return ResponseEntity.badRequest().body("Não foi possível obter o endereço para o CEP informado.");
             }
-            return ResponseEntity.ok(responseToUserDTO);
         }else {
             return ResponseEntity.badRequest().body("O CEP informado é inválido.");
         }
