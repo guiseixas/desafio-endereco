@@ -26,7 +26,7 @@ public class EnderecoControllerTest {
     Teste utilizado para CEPS válidos e retornados corretamente pela API de CEP.
      */
     @Test
-    void consultaEnderecoTeste() throws Exception {
+    void consultaEndereco_ValidCep_ReturnsResponseEntityOk() throws Exception {
         Endereco enderecoTest = new Endereco();
         enderecoTest.setCep("01001000");
         JSONObject requestBody = new JSONObject();
@@ -41,7 +41,7 @@ public class EnderecoControllerTest {
     Teste utilizado para CEPS inválidos (maior que 8 dígitos, nulo ou com caracteres) ou inexistentes.
      */
     @Test
-    void consultaEnderecoTesteBadRequest() throws Exception {
+    void consultaEndereco_InvalidCep_ReturnsResponseEntityBadRequest() throws Exception {
         Endereco enderecoTest = new Endereco();
         enderecoTest.setCep("12345678");
         JSONObject requestBody = new JSONObject();
