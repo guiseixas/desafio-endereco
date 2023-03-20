@@ -1,8 +1,6 @@
 package io.github.guiseixas.desafioendereco.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.guiseixas.desafioendereco.entities.Endereco;
-import io.github.guiseixas.desafioendereco.services.dtos.ResponseCepDTO;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
