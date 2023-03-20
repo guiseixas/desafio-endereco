@@ -33,11 +33,12 @@ public class EnderecoController {
             ResponseEntity<ResponseCepDTO> response =
                     restTemplate.getForEntity(String.format("https://viacep.com.br/ws/%s/json/", cep), ResponseCepDTO.class);
             ResponseToUserDTO responseToUserDTO = dtoConverterService.convertToResponseUserDTO(response.getBody());
-            if(isNull(responseToUserDTO.getBairro())){
+            if(isNull(responseToUserDTO.getCep())){
                 return ResponseEntity.badRequest().body("O CEP informado não foi encontrado.");
             }
             return ResponseEntity.ok(responseToUserDTO);
+        }else {
+            return ResponseEntity.badRequest().body("O CEP informado é inválido.");
         }
-        return ResponseEntity.badRequest().body("O CEP informado não foi encontrado.");
     }
 }
