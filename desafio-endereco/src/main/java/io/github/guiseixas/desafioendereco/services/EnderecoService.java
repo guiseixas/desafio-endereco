@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnderecoService {
     public boolean validarCep(String cep) {
-        if(cep == null || cep.length() != 8 || cep.matches("\\\\d{8}")){
+        if(cep == null || cep.length() != 8 || !cep.matches("[0-9]{8}")){
             return false;
         }
         return true;
