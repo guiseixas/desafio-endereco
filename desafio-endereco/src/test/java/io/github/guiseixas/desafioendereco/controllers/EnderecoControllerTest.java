@@ -19,9 +19,6 @@ public class EnderecoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private EnderecoController enderecoController;
-
     /*
     Teste utilizado para CEPS válidos e retornados corretamente pela API de CEP.
      */

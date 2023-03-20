@@ -1,7 +1,7 @@
 Feature: Consulta Endereço
 
   Scenario: Consulta endereço com CEP válido
-    Given um endereço com o CEP "44895000"
+    Given um endereço com o CEP "01001-000"
     When o usuário consulta o endereço
     Then o serviço retorna o endereço
 
