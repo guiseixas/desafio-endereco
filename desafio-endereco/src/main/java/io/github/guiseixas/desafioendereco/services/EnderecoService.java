@@ -11,7 +11,7 @@ public class EnderecoService {
         return true;
     }
     public String mascaraCEP(String cep) {
-        if(cep.charAt(5) == '-'){
+        if(cep.length() > 5 && cep.charAt(5) == '-'){
             return cep.substring(0,5) + cep.substring(6);
         }
         return cep;
